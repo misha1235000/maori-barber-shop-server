@@ -11,6 +11,7 @@ const users = require('./controllers/user.controller');
 const appointments = require('./controllers/appointment.controller');
 const products = require('./controllers/product.controller');
 const types = require('./controllers/appointment-type.controller');
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
 // Headers
 app.use((req, res, next) => {
@@ -46,4 +47,4 @@ app.set('port', port);
 
 const server = http.createServer(app);
 server.listen(port, () => console.log(`Running on localhost:${port}`));
-mongoose.connect('mongodb://localhost/barbershop');
+mongoose.connect('mongodb://misha:Misha123@ds247410.mlab.com:47410/dbbarbershop');

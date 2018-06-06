@@ -17,10 +17,22 @@ router.post('/user', (req, res) => {
     });
 });
 
+router.post('/sms', (req, res) => {
+    userManager.sendSMS(req.body.phone).then((data) => {
+        res.json(data);
+    });
+});
+
+router.post('/verify', (req, res) => {
+    userManager.verifyCode(req.body.code, req.body.request_id).then((data) => {
+        res.json(data);
+    });
+});
+
 router.delete('/users', (req, res) => {
     userManager.delete().then((data) => {
         res.json(data);
-    });
+    }).catch((err) => {console.log(err);});
 });
 
 module.exports = router;
