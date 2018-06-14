@@ -18,7 +18,9 @@ router.post('/user', (req, res) => {
 });
 
 router.post('/sms', (req, res) => {
-    userManager.sendSMS(req.body.phone).then((data) => {
+    let phone = '972' + req.body.phone.substr(1);
+
+    userManager.sendSMS(phone).then((data) => {
         res.json(data);
     });
 });
