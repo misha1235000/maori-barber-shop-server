@@ -17,31 +17,4 @@ router.post('/user', (req, res) => {
     });
 });
 
-router.post('/sms', (req, res) => {
-    let phone = '972' + req.body.phone.substr(1);
-
-    userManager.sendSMS(phone).then((data) => {
-        res.json(data);
-    });
-});
-
-router.post('/verify', (req, res) => {
-    userManager.verifyCode(req.body.code, req.body.request_id).then((verified) => {
-        if (verified.error_text) {
-            res.json(verified)
-        } else {
-            userManager.add(verified.user).then((user) => {
-                
-            });
-        }
-        //res.json(data);
-    });
-});
-
-router.delete('/users', (req, res) => {
-    userManager.delete().then((data) => {
-        res.json(data);
-    }).catch((err) => {console.log(err);});
-});
-
 module.exports = router;
