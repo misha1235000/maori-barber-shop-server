@@ -17,4 +17,10 @@ router.post('/user', (req, res) => {
     });
 });
 
+router.delete('/user', (req, res) => {
+    userManager.delete(req.body._id).then((data) => {
+        res.json(data);
+    });
+});
+
 module.exports = router;

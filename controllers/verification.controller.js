@@ -27,8 +27,9 @@ router.post('/verify', (req, res) => {
         if (verified.error_text) {
             res.json(verified)
         } else {
-            userManager.add(verified.user).then((user) => {
-                appointmentManager.add(verified.appointment).then((appointment) => {
+            req.body.user.isApproved = false;
+            userManager.add(req.body.user).then((user) => {
+                appointmentManager.add(req.body.appointment).then((appointment) => {
                     res.json({'success': 'success'});
                 });
             });

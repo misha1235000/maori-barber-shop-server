@@ -4,9 +4,9 @@ const Schema = mongoose.Schema;
 
 // create a schema
 let AppointmentSchema = new Schema({
-    date: { type: Date, required: true, unique: true },
+    datefrom: { type: Date, required: true, unique: true },
     ownerPhone: {type: String, required: true},
-    types: [{ type: String }]
+    types: [{ type: String, required: true }]
 });
 
 

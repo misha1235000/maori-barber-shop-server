@@ -22,12 +22,4 @@ router.delete('/appointment', (req, res) => {
     });
 });
 
-/*
-router.delete('/apointment', (req, res) => {
-    userManager.deleteAllUsers().then((data) => {
-        res.json(data);
-    });
-});
-*/
-
 module.exports = router;

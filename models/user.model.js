@@ -5,7 +5,7 @@ const Schema = mongoose.Schema;
 let userSchema = new Schema({
     phone: { type: String, required: true, unique: true },
     name: { type: String, required: true },
-    isApproved: Boolean
+    isApproved: { type: Boolean }
 });
 
 

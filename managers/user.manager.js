@@ -16,7 +16,7 @@ class UserManager {
             });
         }).catch((err) => {console.log(err);});
     }
-    
+
     add(user) {
         return new Promise((resolve, reject) => {
             let newUser = new User(user);
@@ -27,6 +27,18 @@ class UserManager {
                     resolve("User Created");
                 }
             });
+        }).catch((err) => {console.log(err);});
+    }
+
+    delete(id) {
+        return new Promise ((resolve, reject) => {
+            User.findOneAndRemove({_id: id}, (err, data) => {
+                if(err) {
+                    reject(err);
+                } else {
+                    resolve(data);
+                }
+            })
         }).catch((err) => {console.log(err);});
     }
 
