@@ -83,4 +83,4 @@ class VerificationManager {
     }
 }
 
-exports.UserManager = UserManager;
+exports.VerificationManager = VerificationManager;

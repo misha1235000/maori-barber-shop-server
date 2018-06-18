@@ -11,6 +11,8 @@ const users = require('./controllers/user.controller');
 const appointments = require('./controllers/appointment.controller');
 const products = require('./controllers/product.controller');
 const types = require('./controllers/appointment-type.controller');
+const verification = require('./controllers/verification.controller');
+
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
 // Headers
@@ -34,6 +36,7 @@ app.use('/api', users);
 app.use('/api', appointments);
 app.use('/api', products);
 app.use('/api', types);
+app.use('/api', verification);
 
 // Send all other requests to the Angular app
 /*
