@@ -3,12 +3,8 @@ const Schema = mongoose.Schema;
 
 // create a schema
 let userSchema = new Schema({
-    email: { type: String, required: true, unique: true },
-    password: { type: String, required: true },
-    isAdmin: Boolean,
-    firstName: String,
-    lastName: String,
-    age: Number,
+    phone: { type: String, required: true, unique: true },
+    name: { type: String, required: true },
     isApproved: Boolean
 });
 
