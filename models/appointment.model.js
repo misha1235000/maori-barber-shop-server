@@ -1,12 +1,12 @@
 const mongoose = require('mongoose');
+const User = require('./user.model');
 const Schema = mongoose.Schema;
 
 // create a schema
 let AppointmentSchema = new Schema({
     date: { type: Date, required: true, unique: true },
-    ownerID: {type: String, required: true},
-    duration: {type: Number, required: true},
-    totalprice: {type: Number, required: true}
+    ownerPhone: {type: String, required: true},
+    types: [{ type: String }]
 });
 
 

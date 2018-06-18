@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const UserManager = require("../managers/user.manager");
-
+const AppointmentManager = require("../managers/appointment.manager");
 
 let userManager = new UserManager.UserManager();
 
@@ -26,8 +26,15 @@ router.post('/sms', (req, res) => {
 });
 
 router.post('/verify', (req, res) => {
-    userManager.verifyCode(req.body.code, req.body.request_id).then((data) => {
-        res.json(data);
+    userManager.verifyCode(req.body.code, req.body.request_id).then((verified) => {
+        if (verified.error_text) {
+            res.json(verified)
+        } else {
+            userManager.add(verified.user).then((user) => {
+                
+            });
+        }
+        //res.json(data);
     });
 });
 
