@@ -1,7 +1,6 @@
 /*const MongoClient = require("mongodb").MongoClient;
 const ObjectID = require("mongodb").ObjectID;*/
 const https = require('https');
-const curl = new (require('curl-request'))();
 const User = require('../models/user.model');
 const querystring = require('querystring');
 
