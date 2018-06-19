@@ -23,17 +23,17 @@ router.post('/sms', (req, res) => {
 });
 
 router.post('/verify', (req, res) => {
-    verificationManager.verifyCode(req.body.code, req.body.request_id).then((verified) => {
-        if (verified.error_text) {
-            res.json(verified)
-        } else {
+    //verificationManager.verifyCode(req.body.code, req.body.request_id).then((verified) => {
+    //    if (verified.error_text) {
+     //       res.json(verified)
+     //   } else {
             req.body.user.isApproved = false;
             userManager.add(req.body.user).then((user) => {
                 appointmentManager.add(req.body.appointment).then((appointment) => {
                     res.json({'success': 'success'});
-                });
             });
-        }
+    //       });
+    //    }
         //res.json(data);
     });
 });

@@ -22,7 +22,7 @@ class UserManager {
             let newUser = new User(user);
             newUser.save((err) => {
                 if (err) {
-                    reject(500);
+                    reject(err);
                 } else {
                     resolve("User Created");
                 }
