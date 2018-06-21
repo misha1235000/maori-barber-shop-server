@@ -17,6 +17,18 @@ class UserManager {
         }).catch((err) => {console.log(err);});
     }
 
+    getByPhone(phone) {
+        return new Promise((resolve, reject) => {
+            User.find({'phone': phone}, (err, user) => {
+                if (err) {
+                    reject(500);
+                }
+
+                resolve(user);
+            });
+        }).catch((err) => {console.log(err);});
+    }
+
     add(user) {
         return new Promise((resolve, reject) => {
             let newUser = new User(user);

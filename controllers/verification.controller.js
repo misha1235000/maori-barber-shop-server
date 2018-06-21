@@ -13,11 +13,17 @@ router.post('/sms', (req, res) => {
     let phone;
 
     if (!regex.test(req.body.phone)) {
-        res.json({'error_text': 'wrong number'})
+        res.json({'error_text': 'מספר שגוי'})
     } else {
-        phone = '972' + req.body.phone.substr(1);
-        verificationManager.sendSMS(phone).then((data) => {
-            res.json(data);
+        userManager.getByPhone(req.body.phone).then((isExist) => {
+            if (isExist.length > 0) {
+                phone = '972' + req.body.phone.substr(1);
+                verificationManager.sendSMS(phone).then((data) => {
+                    res.json(data);
+                });
+            } else {
+                res.json({'error_text': 'not_exist_phone', 'status':'100'});
+            }
         });
     }
 });

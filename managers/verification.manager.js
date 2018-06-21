@@ -4,6 +4,7 @@ const https = require('https');
 const querystring = require('querystring');
 
 class VerificationManager {
+
     sendSMS(phone) {
         const postData = JSON.stringify({
             'api_key': '8d403565',
