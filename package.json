@@ -1,0 +1,25 @@
+{
+  "name": "maori-barber-shop-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "dependencies": {
+    "express": "^4.16.3",
+    "mongoose": "^5.1.6"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/misha1235000/maori-barber-shop-server.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/misha1235000/maori-barber-shop-server/issues"
+  },
+  "homepage": "https://github.com/misha1235000/maori-barber-shop-server#readme"
+}
