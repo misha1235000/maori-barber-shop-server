@@ -15,14 +15,19 @@ router.post('/sms', (req, res) => {
     if (!regex.test(req.body.phone)) {
         res.json({'error_text': 'מספר שגוי'})
     } else {
-        userManager.getByPhone(req.body.phone).then((isExist) => {
+        userManager.getByPhone(req.body.user.phone).then((isExist) => {
             if (isExist.length > 0) {
-                phone = '972' + req.body.phone.substr(1);
-                verificationManager.sendSMS(phone).then((data) => {
+                phone = '972' + req.body.user.phone.substr(1);
+                verificationManager.
+                endSMS(phone).then((data) => {
                     res.json(data);
                 });
             } else {
-                res.json({'error_text': 'not_exist_phone', 'status':'100'});
+                if (req.body.name && req.body.name.length >= 3) {
+                    
+                } else {
+                    res.json({'error_text': 'not_exist_phone', 'status':'100'});
+                }
             }
         });
     }
@@ -42,6 +47,22 @@ router.post('/verify', (req, res) => {
     //    }
         //res.json(data);
     });
+});
+
+router.post('/exist', (req, res) => {
+    let regex = /^05\d{8}$/;
+
+    if (regex.test(req.body.phone)) {
+        userManager.getByPhone(req.body.phone).then((isExist) => {
+            if (isExist.length > 0) {
+                res.json({'isExist': true});
+            } else {
+                res.json({'isExist': false});
+            }
+        });
+    } else {
+        res.json({'isExist': false});
+    }
 });
 
 module.exports = router;
