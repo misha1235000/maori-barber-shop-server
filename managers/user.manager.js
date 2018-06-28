@@ -36,7 +36,7 @@ class UserManager {
                 if (err) {
                     reject(err);
                 } else {
-                    resolve("User Created");
+                    resolve("success");
                 }
             });
         }).catch((err) => {console.log(err);});
