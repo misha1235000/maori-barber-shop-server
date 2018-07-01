@@ -33,9 +33,10 @@ class AppointmentManager {
                 }
 
                 let daysArray = [];
+                let sumHoursArray = [];
                 let currDayArray = [];
 
-                for (let i = 0; i < 31; i++) {
+                for (let i = 1; i <= 31; i++) {
                     currDayArray = [];
 
                     appointments.forEach(appointment => {
@@ -46,8 +47,22 @@ class AppointmentManager {
 
                     daysArray.push(currDayArray);
                 }
-                console.log('test');
-                resolve(appointments.map((appointment) => {return {dateto:appointment.dateto, datefrom:appointment.datefrom}}));
+
+                let totalDayMinutes;
+
+                daysArray.forEach(day => {
+                    totalDayMinutes = 0;
+
+                    day.forEach(currAppointment => {
+                        let currMinutes = ((currAppointment.dateto - currAppointment.datefrom) / 1000 / 60);
+                        totalDayMinutes += currMinutes;
+                    });
+
+                    sumHoursArray.push(totalDayMinutes);
+                });
+                //console.log('test');
+                //resolve(appointments.map((appointment) => {return {dateto:appointment.dateto, datefrom:appointment.datefrom}}));
+                resolve(sumHoursArray);
             });
         }).catch((err) => { console.log(err); });
     }
