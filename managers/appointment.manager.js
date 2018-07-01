@@ -32,6 +32,21 @@ class AppointmentManager {
                     reject(err);
                 }
 
+                let daysArray = [];
+                let currDayArray = [];
+
+                for (let i = 0; i < 31; i++) {
+                    currDayArray = [];
+
+                    appointments.forEach(appointment => {
+                        if (appointment.dateFilter.split('-')[0] === i.toString()) {
+                            currDayArray.push(appointment);
+                        }
+                    });
+
+                    daysArray.push(currDayArray);
+                }
+                console.log('test');
                 resolve(appointments.map((appointment) => {return {dateto:appointment.dateto, datefrom:appointment.datefrom}}));
             });
         }).catch((err) => { console.log(err); });
