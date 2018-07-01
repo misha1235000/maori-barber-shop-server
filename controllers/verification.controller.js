@@ -43,6 +43,7 @@ router.post('/sms', (req, res) => {
 
 router.post('/verify', (req, res) => {
     verificationManager.verifyCode(req.body.code, req.body.request_id).then((verified) => {
+        verified = JSON.parse(verified);
         if (verified.error_text) {
             res.json(verified)
         } else {
