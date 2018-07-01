@@ -25,6 +25,18 @@ class AppointmentManager {
         }).catch((err) => { console.log(err); });
     }
 
+    getByMonth(month) {
+        return new Promise((resolve, reject) => {
+            Appointment.find({ 'dateFilter': { $regex: month, $options: 'i'}}, (err, appointments) => {
+                if (err) {
+                    reject(err);
+                }
+
+                resolve(appointments.map((appointment) => {return {dateto:appointment.dateto, datefrom:appointment.datefrom}}));
+            });
+        }).catch((err) => { console.log(err); });
+    }
+
     add(appointment) {
         return new Promise((resolve, reject) => {
             let newAppointment = new Appointment(appointment);

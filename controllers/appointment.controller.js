@@ -10,8 +10,14 @@ router.get('/appointment', (req, res) => {
     });
 });
 
-router.get('/appointment/:date', (req, res) => {
+router.get('/appointment/date/:date', (req, res) => {
     appointmentManager.getByDate(req.params.date).then((data) => {
+        res.json(data);
+    });
+});
+
+router.get('/appointment/month/:month', (req, res) => {
+    appointmentManager.getByMonth(req.params.month).then((data) => {
         res.json(data);
     });
 });
