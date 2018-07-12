@@ -8,7 +8,7 @@ let userManager = new UserManager.UserManager();
 let verificationManager = new VerificationManager.VerificationManager();
 let appointmentManager = new AppointmentManager.AppointmentManager();
 
-router.post('/sms', (req, res) => {
+router.post('/auth', (req, res) => {
     let regex = /^05\d{8}$/;
     let phone;
 
@@ -41,7 +41,7 @@ router.post('/sms', (req, res) => {
     }
 });
 
-router.post('/verify', (req, res) => {
+router.post('/auth/verify', (req, res) => {
     verificationManager.verifyCode(req.body.code, req.body.request_id).then((verified) => {
         verified = JSON.parse(verified);
         if (verified.error_text) {
@@ -55,12 +55,12 @@ router.post('/verify', (req, res) => {
     });
 });
 
-router.post('/exist', (req, res) => {
+router.post('/auth/exist', (req, res) => { // Checks whether the phone exists in the DB or not.
     let regex = /^05\d{8}$/;
 
-    if (regex.test(req.body.phone)) {
-        userManager.getByPhone(req.body.phone).then((isExist) => {
-            if (isExist.length > 0) {
+    if (regex.test(req.body.phone)) { // If the phone syntax is valid.
+        userManager.getByPhone(req.body.phone).then((isExist) => { // Search for the specified phone.
+            if (isExist.length > 0) { // If array is not empty.
                 res.json({'isExist': true});
             } else {
                 res.json({'isExist': false});
