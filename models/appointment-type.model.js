@@ -10,8 +10,6 @@ let AppointmentTypeSchema = new Schema({
     desc: { type: String, required: true }
 });
 
-
-
 let AppointmentType = mongoose.model('AppointmentType', AppointmentTypeSchema);
 
 module.exports = AppointmentType;

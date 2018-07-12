@@ -8,8 +8,6 @@ let userSchema = new Schema({
     isApproved: { type: Boolean }
 });
 
-
-
 let User = mongoose.model('User', userSchema);
 
 module.exports = User;

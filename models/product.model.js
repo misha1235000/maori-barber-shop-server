@@ -9,8 +9,6 @@ let ProductSchema = new Schema({
     price: { type: Number, required: true }
 });
 
-
-
 let Product = mongoose.model('Product', ProductSchema);
 
 module.exports = Product;

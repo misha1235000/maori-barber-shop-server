@@ -13,7 +13,6 @@ let AppointmentSchema = new Schema({
 
 AppointmentSchema.set('toObject', { virtuals: true });
 
-
 let Appointment = mongoose.model('Appointment', AppointmentSchema);
 
 module.exports = Appointment;
