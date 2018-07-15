@@ -2,7 +2,7 @@ let AppointmentType = require('../models/appointment-type.model');
 
 class AppointmentTypeManager {
     /**
-     * 
+     * Gets all the appointment-types.
      */
     get() {
         return new Promise((resolve, reject) => {
@@ -17,7 +17,7 @@ class AppointmentTypeManager {
     }
 
     /**
-     * 
+     * Adds an appointment-type.
      * @param {*} appointmentType 
      */
     add(appointmentType) {
@@ -34,7 +34,7 @@ class AppointmentTypeManager {
     }
 
     /**
-     * 
+     * Deletes an appointment-type.
      * @param {*} id 
      */
     delete(id) {
