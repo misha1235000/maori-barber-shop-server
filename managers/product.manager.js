@@ -1,6 +1,9 @@
 let Product = require('../models/product.model');
 
 class ProductManager {
+    /**
+     * Gets all the products.
+     */
     get() {
         return new Promise((resolve, reject) => {
             Product.find({}, (err, products) => {
@@ -13,6 +16,10 @@ class ProductManager {
         }).catch((err) => {console.log(err);});
     }
 
+    /**
+     * Adds a product.
+     * @param {*} product 
+     */
     add(product) {
         return new Promise((resolve, reject) => {
             let newProduct = new Product(product);
@@ -25,6 +32,10 @@ class ProductManager {
         }).catch((err) => {console.log(err);});
     }
 
+    /**
+     * Deletes a product by ID.
+     * @param {*} id 
+     */
     delete(id) {
         return new Promise ((resolve, reject) => {
             Product.findOneAndRemove({_id: id}, (err, data) => {

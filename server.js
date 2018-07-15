@@ -5,7 +5,6 @@ const path = require("path");
 const http = require("http");
 const app = express();
 
-
 // API file for interacting with MongoDB
 const users = require('./controllers/user.controller');
 const appointments = require('./controllers/appointment.controller');
@@ -38,11 +37,6 @@ app.use('/api', products);
 app.use('/api', types);
 app.use('/api', verification);
 
-// Send all other requests to the Angular app
-/*
-app.get('*' , (req, res) => {
-    res.sendFile(path.join(__dirname, 'dist/index.html'));
-});*/
  
 // Set port
 const port = process.env.PORT || '3000'
@@ -50,4 +44,4 @@ app.set('port', port);
 
 const server = http.createServer(app);
 server.listen(port, () => console.log(`Running on localhost:${port}`));
-mongoose.connect('mongodb://misha:Misha123@ds247410.mlab.com:47410/dbbarbershop');
+mongoose.connect('mongodb://misha:Misha123@ds247410.mlab.com:47410/dbbarbershop').catch((err) => {console.log(err);});

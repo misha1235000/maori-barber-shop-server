@@ -1,10 +1,9 @@
-/*const MongoClient = require("mongodb").MongoClient;
-const ObjectID = require("mongodb").ObjectID;*/
-const https = require('https');
 const User = require('../models/user.model');
-const querystring = require('querystring');
 
 class UserManager {
+    /**
+     * Gets all the users.
+     */
     get() {
         return new Promise((resolve, reject) => {
             User.find({}, (err, users) => {
@@ -17,6 +16,10 @@ class UserManager {
         }).catch((err) => {console.log(err);});
     }
 
+    /**
+     * Gets user by phone.
+     * @param {*} phone 
+     */
     getByPhone(phone) {
         return new Promise((resolve, reject) => {
             User.find({'phone': phone}, (err, user) => {
@@ -29,6 +32,10 @@ class UserManager {
         }).catch((err) => {console.log(err);});
     }
 
+    /**
+     * Adds a user.
+     * @param {*} user 
+     */
     add(user) {
         return new Promise((resolve, reject) => {
             let newUser = new User(user);
@@ -42,6 +49,10 @@ class UserManager {
         }).catch((err) => {console.log(err);});
     }
 
+    /**
+     * Deletes a user by ID.
+     * @param {*} id 
+     */
     delete(id) {
         return new Promise ((resolve, reject) => {
             User.findOneAndRemove({_id: id}, (err, data) => {
@@ -53,6 +64,5 @@ class UserManager {
             })
         }).catch((err) => {console.log(err);});
     }
-
 }
 exports.UserManager = UserManager;

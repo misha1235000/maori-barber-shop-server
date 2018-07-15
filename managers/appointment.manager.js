@@ -1,6 +1,9 @@
 let Appointment = require('../models/appointment.model');
 
 class AppointmentManager {
+    /**
+     * Gets all the appointments.
+     */
     get() {
         return new Promise((resolve, reject) => {
             Appointment.find({}, (err, appointments) => {
@@ -13,6 +16,10 @@ class AppointmentManager {
         }).catch((err) => { console.log(err); });
     }
 
+    /**
+     * Gets the appointments by specific date.
+     * @param {*} date 
+     */
     getByDate(date) {
         return new Promise((resolve, reject) => {
             Appointment.find({ 'dateFilter': date }, (err, appointments) => {
@@ -25,6 +32,10 @@ class AppointmentManager {
         }).catch((err) => { console.log(err); });
     }
 
+    /**
+     * Gets the appointments by a specific month.
+     * @param {*} month 
+     */
     getByMonth(month) {
         return new Promise((resolve, reject) => {
             Appointment.find({ 'dateFilter': { $regex: month, $options: 'i'}}, (err, appointments) => {
@@ -60,13 +71,16 @@ class AppointmentManager {
 
                     sumHoursArray.push(totalDayMinutes);
                 });
-                //console.log('test');
-                //resolve(appointments.map((appointment) => {return {dateto:appointment.dateto, datefrom:appointment.datefrom}}));
+
                 resolve(sumHoursArray);
             });
         }).catch((err) => { console.log(err); });
     }
 
+    /**
+     * Adds an appointment.
+     * @param {*} appointment 
+     */
     add(appointment) {
         return new Promise((resolve, reject) => {
             let newAppointment = new Appointment(appointment);
@@ -80,6 +94,10 @@ class AppointmentManager {
         }).catch((err) => {console.log(err);});
     }
 
+    /**
+     * Deletes an appointment by ID.
+     * @param {*} id 
+     */
     delete(id) {
         return new Promise ((resolve, reject) => {
             Appointment.findOneAndRemove({_id: id}, (err, data) => {
