@@ -5,6 +5,10 @@ const querystring = require('querystring');
 
 class VerificationManager {
 
+    /**
+     * Sends an SMS and creates a user if doesnt exist.
+     * @param {*} phone 
+     */
     sendSMS(phone) {
         const postData = JSON.stringify({
             'api_key': '8d403565',
@@ -44,6 +48,11 @@ class VerificationManager {
         });
     }
 
+    /**
+     * Verifies the SMS code that was sent and creates an appointment.
+     * @param {*} code 
+     * @param {*} request_id 
+     */
     verifyCode(code, request_id) {
         const postData = JSON.stringify({
             'api_key': '8d403565',
